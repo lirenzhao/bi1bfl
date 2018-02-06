@@ -34,10 +34,34 @@ def downPage(url):
                 # else:
                 #     print('下载图片失败')
 #<div class="show_title"><a href="javascript:void(0)"> 0007  清 青花山水盘、碗 （共三件）                   </a></div>
-                art_info = re.findall('<div class="show_title"><a href="javascript:void(0)">(.*?)</div>',art_html)
-                print(art_html)
+                art_info = re.findall('<div class="show_title">.*?>(.*?)</a>',art_html)
+                
+                print('art_info:',art_info[0].strip())
+
+                art_html = art_html.replace(' ','').replace('\n','')
+                
+                art_info = re.findall('<li>成交价：.*?RMB(.*?)<!--',art_html)
                 print('art_info:',art_info)
-                break
+
+                art_info = re.findall('<li>类　别：.*?(.*?)</li',art_html)
+                print('art_info:',art_info)
+
+                # art_info = re.findall('<li>尺　　寸：.*?(.*?)</li',art_html)
+                # print('art_info:',art_info)
+
+                # art_info = re.findall('<li>创作年代：.*?(.*?)</li',art_html)
+                # print('art_info:',art_info)
+
+                # art_info = re.findall('<li>估　　价：.*?(.*?)</li',art_html)
+                # print('art_info:',art_info)
+
+                art_info = re.findall('<divclass="showTxt_bighidden"><br/>(.*?)<br/><br>(.*?)&nbsp;<br>(.*?)<divclass="close">',art_html)
+                print('art_info:',art_info)
+
+                art_info = re.findall('<li>尺　　寸：.*?(.*?)</li.*?<li>创作年代：.*?(.*?)</li.*?<li>估　　价：.*?(.*?)</li',art_html)
+                print('art_info:',art_info)
+
+                
             else:
                 print('',art_ret.status_code)
             #break
