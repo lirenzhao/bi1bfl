@@ -23,16 +23,16 @@ def downPage(url):
                 art_img = re.findall('<a href="(.*?)" class="jqzoom"',art_html)[0]
                 #art_img = art_info[0]
                 print(art_img)
-                # img = requests.get(art_img)
-                # if img.status_code == 200:
-                #     filename = "./images/" + art_img.split("/")[-2] + ".jpg"
+                img = requests.get(art_img)
+                if img.status_code == 200:
+                    filename = "./images/" + art_img.split("/")[-2] + ".jpg"
                     
-                #     with open(filename,'wb') as f:
-                #         f.write(img.content)
+                    with open(filename,'wb') as f:
+                        f.write(img.content)
 
-                #     print('save image file ',filename)    
-                # else:
-                #     print('下载图片失败')
+                    print('save image file ',filename)    
+                else:
+                    print('下载图片失败')
 #<div class="show_title"><a href="javascript:void(0)"> 0007  清 青花山水盘、碗 （共三件）                   </a></div>
                 art_info = re.findall('<div class="show_title">.*?>(.*?)</a>',art_html)
                 
