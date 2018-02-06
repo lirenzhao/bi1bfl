@@ -20,19 +20,24 @@ def downPage(url):
             if art_ret.status_code == 200:
                 art_html = art_ret.text
                 #<a href="http://auction3.img.artimg.net/auctionBigImage/art5120830001/2000-2000-b.jpg" class="jqzoom" rel='gal1' title="triumph" id="jqzoom1">
-                art_info = re.findall('<a href="(.*?)" class="jqzoom"',art_html)
-                art_img = art_info[0]
+                art_img = re.findall('<a href="(.*?)" class="jqzoom"',art_html)[0]
+                #art_img = art_info[0]
                 print(art_img)
-                img = requests.get(art_img)
-                if img.status_code == 200:
-                    filename = "./images/" + art_img.split("/")[-2] + ".jpg"
+                # img = requests.get(art_img)
+                # if img.status_code == 200:
+                #     filename = "./images/" + art_img.split("/")[-2] + ".jpg"
                     
-                    with open(filename,'wb') as f:
-                        f.write(img.content)
+                #     with open(filename,'wb') as f:
+                #         f.write(img.content)
 
-                    print('save image file ',filename)    
-                else:
-                    print('下载图片失败')
+                #     print('save image file ',filename)    
+                # else:
+                #     print('下载图片失败')
+#<div class="show_title"><a href="javascript:void(0)"> 0007  清 青花山水盘、碗 （共三件）                   </a></div>
+                art_info = re.findall('<div class="show_title"><a href="javascript:void(0)">(.*?)</div>',art_html)
+                print(art_html)
+                print('art_info:',art_info)
+                break
             else:
                 print('',art_ret.status_code)
             #break
