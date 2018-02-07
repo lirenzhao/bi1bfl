@@ -82,7 +82,7 @@ def downPage(url):
             else:
                 print('',art_ret.status_code)
             # if count == 2:
-            break
+            #break
             # count = count + 1
         #print(ret.text)
         #for j in b:
